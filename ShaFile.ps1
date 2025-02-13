@@ -11,12 +11,16 @@ function Get-FileSHA1($filePath) {
     foreach ($byte in $hash) {
         <# $byte is thash item #>
         $hexaNotation = $byte.ToString("X2")
-        $prettyHashSB.Append($hexaNotation)
+        $prettyHashSB.Append($hexaNotation) > $null
     }
 
-    Write-Host $hash -BackgroundColor Red -ForegroundColor Yellow
+    $prettyHashSB.ToString()
 }
-Get-FileSHA1 C:\Users\wesll\OneDrive\Área de Trabalho\estudos\alura\PowerShell\ShaFile.ps1
+
+$arquivo = "C:\Users\wesll\OneDrive\Área de Trabalho\estudos\alura\PowerShell\ShaFile.ps1"
+$hashDoArquivo = Get-FileSHA1 $arquivo
+
+Write-Host "O hash do $arquivo eh $hashDoArquivo" -BackgroundColor Red -ForegroundColor Yellow
 
 function Get-FileSHA256() {
 
